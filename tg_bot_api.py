@@ -5,11 +5,11 @@ from telebot import types
 from telebot.formatting import hlink, hbold
 
 from cl_parser import get_data_cl
-from cu_parser import get_data_cu
-from dns_parser import get_data_dns
+# from cu_parser import get_data_cu
+from dns_parser import scraper_dns
 from mv_parser import get_data_mv
 
-bot = telebot.TeleBot('TOKEN', parse_mode='HTML')
+bot = telebot.TeleBot('5499460518:AAFCtWIXEOu34Z2doRuefKOHy_raRr_YNzE', parse_mode='HTML')
 
 
 @bot.message_handler(commands=['start'])
@@ -26,7 +26,7 @@ def get_data_vc(message: types.Message):
     if message.text == 'DNS':
         bot.send_message(chat_id=message.chat.id, text='Идет сбор информации... \n'
                                                        'Это может занять какое-то время...')
-        data = get_data_dns()
+        data = scraper_dns()
     elif message.text == 'Мвидео':
         bot.send_message(chat_id=message.chat.id, text='Идет сбор информации... \n')
         data = get_data_mv()
@@ -36,7 +36,7 @@ def get_data_vc(message: types.Message):
     elif message.text == 'ComputerUniverse':
         bot.send_message(chat_id=message.chat.id, text='Идет сбор информации... \n'
                                                        'Это может занять какое-то время...')
-        data = handling_func(get_data_cu, message)
+        # data = handling_func(get_data_cu, message)
     else:
         bot.send_message(chat_id=message.chat.id,
                          text='Такого магазина нет в отработке... \n Выберете другой магазин...')
